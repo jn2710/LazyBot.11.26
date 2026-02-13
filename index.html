@@ -85,7 +85,7 @@ function addMessage(text,sender){
     document.getElementById("messages").scrollTop=document.getElementById("messages").scrollHeight;
 }
 
-// ==== LEVEL SYSTEM ====
+// this doesnt fucking work
 function levelCheck(){
     if(memory.xp >= memory.level*75){
         memory.level++;
@@ -93,7 +93,7 @@ function levelCheck(){
     }
 }
 
-// ==== MATH PARSER ====
+// ==== MATH shit====
 function parseMath(input){
     let lower=input.toLowerCase()
     .replace("plus","+")
@@ -121,7 +121,7 @@ function detectInsult(text){
     return insults.some(word=>text.includes(word));
 }
 
-// ==== JACKSON DEFENSE ====
+// ==== JACKSON shit ====
 function jacksonNegative(text){
     const names=["jackson","jack","jaxon","jakson"];
     const negatives=["stupid","trash","loser","dumb","pathetic","hate"];
@@ -130,11 +130,12 @@ function jacksonNegative(text){
     return mentions&&neg;
 }
 
-// ==== FAKE HACK ULTIMATE ====
+// ==== FAKE HACK ULTIMATEtuff ah name ====
 function fakeHack(){
     if(memory.hackCooldown) return;
     memory.hackCooldown=true;
     let steps=[
+        "You messed up.",
         "[ INITIATING RESPONSE PROTOCOL ]",
         "Resolving client signature...",
         "IP Hash: 198.51.100."+Math.floor(Math.random()*255),
@@ -144,7 +145,7 @@ function fakeHack(){
         "Latency: "+(20+Math.floor(Math.random()*40))+"ms",
         "Session fingerprint matched.",
         "Access level: Minimal.",
-        "Relax. I'm lazy, not illegal."
+        "Precision Strike inbound"
     ];
     let i=0;
     let interval=setInterval(()=>{
@@ -164,7 +165,7 @@ function lazyGreeting(input){
     return null;
 }
 
-// ==== SEND MESSAGE ====
+// ==== SEND Msg ====
 function sendMessage(){
     const inputField=document.getElementById("userInput");
     let input=inputField.value.trim();
@@ -195,7 +196,7 @@ function sendMessage(){
         return;
     }
 
-    // INSULT DETECTION
+    // INSULT DET
     if(detectInsult(lower)){
         memory.insultCount++;
         fakeHack();
@@ -215,7 +216,7 @@ function sendMessage(){
         return;
     }
 
-    // ROAST TOGGLE
+    // ROAST TOGGLE with v6 defense
     if(lower.includes("roast")){
         memory.roast=!memory.roast;
         addMessage("Roast mode "+(memory.roast?"enabled.":"disabled."),"bot");
@@ -223,7 +224,7 @@ function sendMessage(){
         return;
     }
 
-    // MATH HISTORY
+    // MATH HIS
     if(lower==="math history"){
         addMessage(memory.mathHistory.length?memory.mathHistory.join(", "):"Empty.","bot");
         return;
@@ -235,7 +236,7 @@ function sendMessage(){
         return;
     }
 
-    // MATH PARSING
+    // MATH 
     let math=parseMath(lower);
     if(math!==null){
         addMessage("It's "+math+". Basic stuff.","bot");
@@ -250,7 +251,7 @@ function sendMessage(){
         return;
     }
 
-    // DEFAULT LAZY RESPONSE
+    // LAZY RESPONSEnonautowithmood
     const normal=["Alright.","Sure.","I guess.","Noted.","Okay."];
     const roast=["That was unimpressive.","You tried.","I expected nothing and still feel let down.","Bold choice."];
     let pool=memory.roast?roast:normal;
@@ -262,12 +263,13 @@ function sendMessage(){
     saveMemory();
 }
 
-// ==== INIT ====
+// ==== INITimportant ====
 addMessage("LazyBot Ultimate online. Ready to be lazy.","bot");
 updateUI();
 </script>
 
 </body>
 </html>
+
 
 
